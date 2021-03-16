@@ -25,7 +25,7 @@ SECRET_KEY = 'kx8hi*n!9@^7m2z5hi!0pdw%3q=h@sn0el^i+g4u59=*g_uw$e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*','192.168.122.214','localhost']
 
 
 # Application definition
@@ -129,3 +129,4 @@ STATIC_URL = '/static/'
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000'
 ]
+STATIC_ROOT = 'static/'
