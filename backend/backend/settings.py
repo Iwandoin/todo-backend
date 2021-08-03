@@ -33,6 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #ALLOWED_HOSTS = ['*','192.168.122.214','localhost']
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
+
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
@@ -123,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Minsk'
 
 USE_I18N = True
 
@@ -141,3 +142,5 @@ CORS_ORIGIN_WHITELIST = [
 ]
 MEDIA_URL = '/media/' 
 STATIC_ROOT = BASE_DIR / 'static'
+
+

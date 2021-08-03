@@ -11,8 +11,8 @@ apply*.log
 *.war
 .kube/config
 *.lock.hcl
-
+venv
 # IDE/Editor data
 .idea/
-
+dbb
 node_modules
