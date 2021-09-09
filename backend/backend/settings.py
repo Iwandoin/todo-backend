@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import boto3
 from pathlib import Path
 
 
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'todo',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -130,17 +132,36 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/staticfiles/'
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:80'
 ]
 MEDIA_URL = '/media/' 
-STATIC_ROOT = BASE_DIR / 'static'
+#STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+AWS_ACCESS_KEY = os.environ.get("AWS_S3_ACCESS_KEY")
+AWS_SECRET_KEY = os.environ.get("AWS_S3_SECRET_KEY")
+
+
+
+AWS_STORAGE_BUCKET_NAME = 'stvyadro'
+AWS_S3_REGION_NAME = 'eu-central-1'  # e.g. us-east-2
+AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_CUSTOM_DOMAIN")
+STATICFILES_LOCATION = 'staticfiles'
+STATIC_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+STATICFILES_STORAGE = 'todo.backend.StaticStorage'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_S3_ACCESS_KEY")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_S3_SECRET_KEY")
+
+
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_EXPIRE = 120
 

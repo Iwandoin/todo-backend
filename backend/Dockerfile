@@ -2,7 +2,7 @@
 FROM python:3.8.3-alpine
 
 # set work directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/backend
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -21,6 +21,9 @@ COPY ./entrypoint.sh .
 
 # copy project
 COPY . .
-
+RUN chmod 755 chamber
+EXPOSE 8000
 # run entrypoint.sh
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+#ENTRYPOINT ["./chamber exec todo/backend -- /usr/src/backend/entrypoint.sh"]
+ENTRYPOINT ["./chamber", "exec", "todo/backend", "--"]
+CMD ["/usr/src/backend/entrypoint.sh"]

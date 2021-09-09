@@ -7,6 +7,7 @@ from django.http import HttpResponse
 import boto3
 import time
 import os
+import socket
 from botocore.exceptions import NoCredentialsError
 
 
@@ -20,10 +21,13 @@ AWS_ACCESS_KEY = os.environ.get("AWS_S3_ACCESS_KEY")
 AWS_SECRET_KEY = os.environ.get("AWS_S3_SECRET_KEY")
 
 def return_objects(request):
+    yes = 'Host:' + socket.gethostname() + ' , file uploaded'
+    no = 'Host:' + socket.gethostname() + ' , file not uploaded'
+    empty = 'Host:' + socket.gethostname() + ' , there is no todos'
     queryset = Todo.objects.all()
     d = len(queryset)
     if d == 0:
-        return HttpResponse("There is no todos")
+        return HttpResponse(empty)
     # open and read the file:
     f = open("file.txt", "w+")
     #print(f.read())
@@ -40,7 +44,7 @@ def return_objects(request):
     try:
         s3.upload_file('file.txt', 'myvyadro', timestr)
         print("Upload Successful")
-        return HttpResponse("File uploaded!")
+        return HttpResponse(yes)
     except :
-        return HttpResponse("File not uploaded")
+        return HttpResponse(no)
     #
