@@ -24,6 +24,5 @@ COPY . .
 RUN chmod 755 chamber
 EXPOSE 8000
 # run entrypoint.sh
-#ENTRYPOINT ["./chamber exec todo/backend -- /usr/src/backend/entrypoint.sh"]
-ENTRYPOINT ["./chamber", "exec", "todo/backend", "--"]
+#ENTRYPOINT ["./chamber", "exec", "todo/backend", "--"]
 CMD ["/usr/src/backend/entrypoint.sh"]
