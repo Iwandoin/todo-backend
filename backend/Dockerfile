@@ -25,4 +25,4 @@ RUN chmod 755 chamber
 EXPOSE 8000
 # run entrypoint.sh
 ENTRYPOINT ["./chamber", "exec", "todo/backend", "--"]
-ENTRYPOINT ["/usr/src/backend/entrypoint.sh"]
+CMD ["/usr/src/backend/entrypoint.sh"]
