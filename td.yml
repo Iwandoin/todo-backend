@@ -1,0 +1,14 @@
+version: '2'
+services:
+  todot:
+    image: public.ecr.aws/l6a6l2j9/backendforst:$TAG
+    ports:
+      - "0:8000"
+    mem_limit: 734003200
+    mem_reservation: 10485760
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: todo
+        awslogs-region: eu-central-1
+        awslogs-stream-prefix: backendforst
