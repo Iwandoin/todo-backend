@@ -21,9 +21,9 @@ AWS_ACCESS_KEY = os.environ.get("AWS_S3_ACCESS_KEY")
 AWS_SECRET_KEY = os.environ.get("AWS_S3_SECRET_KEY")
 
 def return_objects(request):
-    yes = 'Host:' + socket.gethostname() + ' , file uploaded'
-    no = 'Host:' + socket.gethostname() + ' , file not uploaded'
-    empty = 'Host:' + socket.gethostname() + ' , there is no todoss'
+    yes = 'Host:' + socket.gethostname() + ' , file uploadeddd'
+    no = 'Host:' + socket.gethostname() + ' , file not uploadeddd'
+    empty = 'Host:' + socket.gethostname() + ' , there is no todosss'
     queryset = Todo.objects.all()
     d = len(queryset)
     if d == 0:
