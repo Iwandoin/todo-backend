@@ -1,7 +1,7 @@
 version: '2'
 services:
   todot:
-    image: public.ecr.aws/l6a6l2j9/backendforst:latest
+    image: public.ecr.aws/l6a6l2j9/backendforst:$TAG
     ports:
       - "0:8000"
     mem_limit: 734003200
