@@ -6,5 +6,5 @@ cd backend && docker build -t backendforst:latest .
 docker tag backendforst:latest public.ecr.aws/l6a6l2j9/backendforst:$TAG
 docker push public.ecr.aws/l6a6l2j9/backendforst:$TAG
 ecs-cli configure --cluster Todot --default-launch-type EC2 --region eu-central-1 --config-name configuration
-ecs-cli compose --project-name todot_backend:$TAG --file td.yml create
-aws ecs update-service --cluster Todot --service todot_service --force-new-deployment --region eu-central-1 --task-definition todot_backend:$TAG
+ecs-cli compose --project-name todot_backend --file td.yml create
+aws ecs update-service --cluster Todot --service todot_service --force-new-deployment --region eu-central-1 --task-definition todot_backend
