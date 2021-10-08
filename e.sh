@@ -5,6 +5,7 @@ aws ecr-public get-login-password --region us-east-1 | docker login --username A
 cd backend && docker build -t backendforst:latest .
 docker tag backendforst:latest public.ecr.aws/l6a6l2j9/backendforst:$TAG
 docker push public.ecr.aws/l6a6l2j9/backendforst:$TAG
+cd ..
 ecs-cli configure --cluster Todot --default-launch-type EC2 --region eu-central-1 --config-name configuration
 pwd
 ls
