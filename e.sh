@@ -10,7 +10,12 @@ cd ..
 ecs-cli configure --cluster Todot --default-launch-type EC2 --region eu-central-1 --config-name configuration
 ls
 ecs-cli compose --project-name todot_backend --file td.yml create
-export TD=$(aws ecs list-task-definitions --family-prefix  todot_backend --region eu-central-1  | jq -r .taskDefinitionArns[-1] )
-aws ecs update-service --cluster Todot --service todot_service --force-new-deployment --region eu-central-1 --task-definition $TD
+export TaskDefinition=$(aws ecs list-task-definitions --family-prefix  todot_backend --region eu-central-1  | jq -r .taskDefinitionArns[-1] )
+aws ecs update-service --cluster Todot --service todot_service --force-new-deployment --region eu-central-1 --task-definition $TaskDefinition
 #| sed 's/.*\///'
-#aws ecs wait services-stable --cluster Todot --services todot_service
+export RolloutState=$(aws ecs describe-services --cluster Todot --service todot_service | jq -r .services[].deployments[] | jq -r .rolloutState))
+until $(aws ecs describe-services --cluster Todot --service todot_service | jq -r .services[].deployments[] | jq -r .rolloutState)) == "COMPLETED"
+do
+  sleep 5
+  echo "Deployment in progress"
+done
