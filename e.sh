@@ -14,7 +14,7 @@ export TaskDefinition=$(aws ecs list-task-definitions --family-prefix  todot_bac
 aws ecs update-service --cluster Todot --service todot_service --force-new-deployment --region eu-central-1 --task-definition $TaskDefinition
 #| sed 's/.*\///'
 #export RolloutState=$(aws ecs describe-services --cluster Todot --service todot_service | jq -r .services[].deployments[] | jq -r .rolloutState)
-until [$RolloutState == "COMPLETED"]
+until ["$RolloutState" == "COMPLETED"]
 do
   sleep 5
   export RolloutState=$(aws ecs describe-services --cluster Todot --service todot_service --region eu-central-1 | jq -r .services[].deployments[] | jq -r .rolloutState)
