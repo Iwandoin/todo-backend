@@ -13,3 +13,4 @@ ecs-cli compose --project-name todot_backend --file td.yml create
 export TD=$(aws ecs list-task-definitions --family-prefix  todot_backend --region eu-central-1  | jq -r .taskDefinitionArns[-1] )
 aws ecs update-service --cluster Todot --service todot_service --force-new-deployment --region eu-central-1 --task-definition $TD
 #| sed 's/.*\///'
+aws ecs wait services-stable
