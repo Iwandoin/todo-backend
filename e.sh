@@ -17,6 +17,6 @@ aws ecs update-service --cluster Todot --service todot_service --force-new-deplo
 until [$RolloutState == "COMPLETED"]
 do
   sleep 5
-  export RolloutState=$(aws ecs describe-services --cluster Todot --service todot_service | jq -r .services[].deployments[] | jq -r .rolloutState)
+  export RolloutState=$(aws ecs describe-services --cluster Todot --service todot_service --region eu-central-1 | jq -r .services[].deployments[] | jq -r .rolloutState)
   echo $RolloutState
 done
