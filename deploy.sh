@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 set +x
+export TAG=$(git rev-parse HEAD)
 ecs-cli configure --cluster Todot --default-launch-type EC2 --region eu-central-1 --config-name configuration
 ls
 ecs-cli compose --project-name todot_backend --file td.yml create
