@@ -16,7 +16,7 @@ TIMEOUT=300
 while [ $i-lt$TIMEOUT ]; do
   set -e
   set +x
-  sleep 15
+  sleep 60
   export RolloutState=$(aws ecs describe-services --cluster Todot --service todot_service --region eu-central-1 \
   | jq -r .services[0].deployments[0] | jq -r .rolloutState | grep -e "COMPLETED" || : >/dev/null)
   echo $(aws ecs describe-services --cluster Todot --service todot_service --region eu-central-1 \
