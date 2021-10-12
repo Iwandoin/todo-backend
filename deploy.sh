@@ -6,7 +6,7 @@ ls
 ecs-cli compose --project-name todot_backend --file td.yml create
 export TaskDefinition=$(aws ecs list-task-definitions --family-prefix  todot_backend --region eu-central-1  | jq -r .taskDefinitionArns[-1] )
 aws ecs update-service --cluster Todot --service todot_service --force-new-deployment --region eu-central-1 --task-definition $TaskDefinition
-TIMEOUT=300
+TIMEOUT=20
 while [ $i-lt$TIMEOUT ]; do
   set -e
   set +x
