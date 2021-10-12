@@ -14,7 +14,9 @@ export TaskDefinition=$(aws ecs list-task-definitions --family-prefix  todot_bac
 aws ecs update-service --cluster Todot --service todot_service --force-new-deployment --region eu-central-1 --task-definition $TaskDefinition
 TIMEOUT=300
 while [ $i-lt$TIMEOUT ]; do
-  sleep 5
+  set -e
+  set +x
+  sleep 15
   export RolloutState=$(aws ecs describe-services --cluster Todot --service todot_service --region eu-central-1 \
   | jq -r .services[0].deployments[0] | jq -r .rolloutState | grep -e "COMPLETED" || : >/dev/null)
   echo $(aws ecs describe-services --cluster Todot --service todot_service --region eu-central-1 \
