@@ -6,7 +6,7 @@ from django.http import HttpResponse
 # Create your views here.
 import boto3
 import time
-#import os
+import os
 import socket
 from botocore.exceptions import NoCredentialsError
 
