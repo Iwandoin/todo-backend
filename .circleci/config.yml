@@ -10,11 +10,13 @@ workflows:
   build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image: # orb built-in job
-          repo: '${MY_APP_PREFIX}'
+          repo: '${ECR_REPOSITORY}'
           tag: '${CIRCLE_SHA1}'
+          aws-access-key-id: sdfvbXb
+          aws-secret-access-key: zdxbzxcb
       - aws-ecs/deploy-service-update: # orb built-in job
           requires:
             - aws-ecr/build-and-push-image
-          family: '${MY_APP_PREFIX}-service'
-          cluster-name: '${MY_APP_PREFIX}-cluster'
-          container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'
+          family: '${ECS_SERVICE}'
+          cluster-name: '${ECS_CLUSTER}'
+          container-image-name-updates: 'container=${ECR_REPOSITORY},tag=${CIRCLE_SHA1}'
