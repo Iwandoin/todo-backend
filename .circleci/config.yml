@@ -17,12 +17,25 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID 
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY 
           account-url: AWS_ECR_ACCOUNT_URL 
-
+  build-and-push-job:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL_P 
+          aws-access-key-id: AWS_ACCESS_KEY_ID 
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY  
+          path: ./backend/ 
+          region: AWS_REGION 
+          repo: ECR_REPOSITORY 
+          tag: CIRCLE_SHA1 
 workflows:
   build-and-deploy:
     
     jobs:
       - ecr-login-job
+      - build-and-push-job
       - aws-ecr/build-and-push-image: # orb built-in job
           account-url: AWS_ECR_ACCOUNT_URL
           repo: '${ECR_REPOSITORY}'
