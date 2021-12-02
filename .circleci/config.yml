@@ -5,10 +5,24 @@ version: 2.1 # 2.1 config required to use orbs
 orbs:
   aws-ecr: circleci/aws-ecr@7.3.0 # invoke the AWS ECR orb
   aws-ecs: circleci/aws-ecs@2.2.1 # invoke the AWS ECS orb
+  aws-cli: circleci/aws-cli@2.0.6
+jobs:
+  ecr-login-job:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - aws-ecr/ecr-login:
+          region: AWS_REGION 
+          aws-access-key-id: AWS_ACCESS_KEY_ID 
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY 
+          account-url: AWS_ECR_ACCOUNT_URL 
 
 workflows:
   build-and-deploy:
+    
     jobs:
+      - ecr-login-job
       - aws-ecr/build-and-push-image: # orb built-in job
           account-url: AWS_ECR_ACCOUNT_URL
           repo: '${ECR_REPOSITORY}'
@@ -22,4 +36,4 @@ workflows:
             - aws-ecr/build-and-push-image
           family: '${ECS_SERVICE}'
           cluster-name: '${ECS_CLUSTER}'
-          container-image-name-updates: 'container=${ECR_REPOSITORY},tag=${CIRCLE_SHA1}'
+          container-image-name-updates: 'container=${ECR_REPOSITORY},tag=${CIRCLE_SHA1}' 
