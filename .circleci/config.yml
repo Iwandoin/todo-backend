@@ -28,8 +28,8 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY  
           path: ./backend/ 
           region: AWS_REGION 
-          repo: ECR_REPOSITORY 
-          tag: CIRCLE_SHA1 
+          repo: ${ECR_REPOSITORY} 
+          tag: ${CIRCLE_SHA1} 
 workflows:
   build-and-deploy:
     
