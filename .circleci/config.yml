@@ -14,6 +14,7 @@ workflows:
           tag: '${CIRCLE_SHA1}'
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          region: AWS_REGION
       - aws-ecs/deploy-service-update: # orb built-in job
           requires:
             - aws-ecr/build-and-push-image
