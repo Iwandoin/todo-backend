@@ -12,8 +12,8 @@ workflows:
       - aws-ecr/build-and-push-image: # orb built-in job
           repo: '${ECR_REPOSITORY}'
           tag: '${CIRCLE_SHA1}'
-          aws-access-key-id: sdfvbXb
-          aws-secret-access-key: zdxbzxcb
+          aws-access-key-id: '${AWS_ACCESS_KEY_ID}'
+          aws-secret-access-key: '${AWS_SECRET_ACCESS_KEY}'
       - aws-ecs/deploy-service-update: # orb built-in job
           requires:
             - aws-ecr/build-and-push-image
