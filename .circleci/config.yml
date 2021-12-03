@@ -7,7 +7,6 @@ orbs:
   aws-ecs: circleci/aws-ecs@2.2.1 # invoke the AWS ECS orb
   aws-cli: circleci/aws-cli@2.0.6
 jobs:
-  
   build-job:
     docker:
       # replace with your preferred image
@@ -18,7 +17,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_REGION
-          path: './backend/'
+          path: './docker/'
           repo: ${ECR_REPOSITORY}
           tag: ${CIRCLE_SHA1}
   ecr-login-job:
