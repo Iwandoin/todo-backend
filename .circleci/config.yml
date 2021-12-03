@@ -30,7 +30,6 @@ jobs:
           path: './backend'
           repo: ${ECR_REPOSITORY}
           tag: ${CIRCLE_SHA1}
-          checkout: true
 workflows:
   build-and-deploy:
     
