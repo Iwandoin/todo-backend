@@ -3,7 +3,7 @@
 version: 2.1 # 2.1 config required to use orbs
 
 orbs:
-  aws-ecr: circleci/aws-ecr@7.3.0 # invoke the AWS ECR orb
+  aws-ecr: circleci/aws-ecr@7.0.0 # invoke the AWS ECR orb
   aws-ecs: circleci/aws-ecs@2.2.1 # invoke the AWS ECS orb
   aws-cli: circleci/aws-cli@2.0.6
 jobs:
