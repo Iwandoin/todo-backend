@@ -17,10 +17,11 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_REGION
-          path: '../backend/'
+          path: './backend/'
           dockerfile: Dockerfile
           repo: ${ECR_REPOSITORY}
           tag: ${CIRCLE_SHA1}
+          checkout: true
   ecr-login-job:
     docker:
       # replace with your preferred image
