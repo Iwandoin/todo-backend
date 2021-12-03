@@ -13,9 +13,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - aws-ecr/ecr-login:
-          region: AWS_REGION 
-          aws-access-key-id: AWS_ACCESS_KEY_ID 
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY 
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           account-url: AWS_ECR_ACCOUNT_URL 
   build-job:
     docker:
@@ -23,13 +23,13 @@ jobs:
       - image: cimg/base:stable
     steps:
       - aws-ecr/build-image:
-          account-url: AWS_ECR_ACCOUNT_URL_P 
-          aws-access-key-id: AWS_ACCESS_KEY_ID 
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY  
+          account-url: AWS_ECR_ACCOUNT_URL_P
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           path: ./backend/
-          region: AWS_REGION 
-          repo: ${ECR_REPOSITORY} 
-          tag: ${CIRCLE_SHA1} 
+          region: AWS_REGION
+          repo: ${ECR_REPOSITORY}
+          tag: ${CIRCLE_SHA1}
 workflows:
   build-and-deploy:
     
