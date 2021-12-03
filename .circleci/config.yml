@@ -28,7 +28,7 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_REGION
           path: './backend'
-          dockerfile: './backend/Dockerfile'
+          dockerfile: 'Dockerfile'
           repo: ${ECR_REPOSITORY}
           tag: ${CIRCLE_SHA1}
 workflows:
