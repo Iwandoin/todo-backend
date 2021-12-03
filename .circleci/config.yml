@@ -22,8 +22,8 @@ jobs:
           #region: AWS_REGION
           path: './backend/'
           dockerfile: Dockerfile
-          repo: ${ECR_REPOSITORY}
-          tag: ${CIRCLE_SHA1}
+          repo: ECR_REPOSITORY
+          tag: CIRCLE_SHA1
       - aws-ecr/ecr-login:
           region: AWS_REGION_LOGIN
           aws-access-key-id: AWS_ACCESS_KEY_ID
