@@ -17,9 +17,9 @@ jobs:
       - aws-cli/install
       - aws-ecr/build-image:
           account-url: AWS_ECR_ACCOUNT_URL
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          region: AWS_REGION
+          #aws-access-key-id: AWS_ACCESS_KEY_ID
+          #aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          #region: AWS_REGION
           path: './backend/'
           dockerfile: Dockerfile
           repo: ${ECR_REPOSITORY}
