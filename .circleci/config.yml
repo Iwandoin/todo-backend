@@ -14,7 +14,7 @@ jobs:
     machine: true
     steps:
       #- checkout
-      - aws-cli/install
+      #- aws-cli/install
       - aws-cli/setup:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-region: AWS_REGION 
