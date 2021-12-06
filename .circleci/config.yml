@@ -5,7 +5,7 @@ version: 2.1 # 2.1 config required to use orbs
 orbs:
   aws-ecr: circleci/aws-ecr@7.3.0 # invoke the AWS ECR orb
   aws-ecs: circleci/aws-ecs@2.2.1 # invoke the AWS ECS orb
-  aws-cli: circleci/aws-cli@2.0.0
+  aws-cli: circleci/aws-cli@2.0.6
 jobs:
   build-job:
     #docker:
@@ -20,11 +20,11 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-region: AWS_REGION 
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY 
-      - aws-ecr/ecr-login:
-          region: AWS_REGION_LOGIN
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          account-url: AWS_ECR_ACCOUNT_URL
+      #- aws-ecr/ecr-login:
+          #region: AWS_REGION_LOGIN
+          #aws-access-key-id: AWS_ACCESS_KEY_ID
+          #aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          #account-url: AWS_ECR_ACCOUNT_URL
       - aws-ecr/build-image:
           account-url: AWS_ECR_ACCOUNT_URL
           #aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -35,7 +35,9 @@ jobs:
           dockerfile: Dockerfile
           repo: ${ECR_REPOSITORY}
           tag: ${CIRCLE_SHA1}
-      
+      - aws-ecr/push-image:
+          repo: ECR_REPOSITORY
+
 workflows:
   build-and-deploy:
     
