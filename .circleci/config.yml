@@ -13,7 +13,7 @@ jobs:
     #   - image: cimg/base:stable
     machine: true
     steps:
-      - checkout
+      #- checkout
       - aws-cli/install
       - aws-ecr/build-image:
           account-url: AWS_ECR_ACCOUNT_URL
