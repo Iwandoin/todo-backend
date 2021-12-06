@@ -11,7 +11,8 @@ jobs:
     #docker:
       # replace with your preferred image
       #- image: cimg/base:stable
-    machine: true
+    machine: 
+      image: ubuntu-2004:202104-01
     steps:
       #- checkout
       #- aws-cli/install
