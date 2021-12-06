@@ -15,6 +15,10 @@ jobs:
     steps:
       #- checkout
       - aws-cli/install
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-region: AWS_REGION 
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY 
       - aws-ecr/ecr-login:
           region: AWS_REGION_LOGIN
           aws-access-key-id: AWS_ACCESS_KEY_ID
