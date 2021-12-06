@@ -15,6 +15,11 @@ jobs:
     steps:
       #- checkout
       - aws-cli/install
+      - aws-ecr/ecr-login:
+          region: AWS_REGION_LOGIN
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          account-url: AWS_ECR_ACCOUNT_URL_P
       - aws-ecr/build-image:
           account-url: AWS_ECR_ACCOUNT_URL
           #aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -25,11 +30,7 @@ jobs:
           dockerfile: Dockerfile
           repo: ${ECR_REPOSITORY}
           tag: ${CIRCLE_SHA1}
-      - aws-ecr/ecr-login:
-          region: AWS_REGION_LOGIN
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          account-url: AWS_ECR_ACCOUNT_URL_P
+      
 workflows:
   build-and-deploy:
     
