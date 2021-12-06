@@ -36,7 +36,8 @@ jobs:
           repo: ${ECR_REPOSITORY}
           tag: ${CIRCLE_SHA1}
       - aws-ecr/push-image:
-          repo: ECR_REPOSITORY
+          repo: ${ECR_REPOSITORY}
+          tag: ${CIRCLE_SHA1}
 
 workflows:
   build-and-deploy:
