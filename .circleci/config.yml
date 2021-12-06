@@ -12,7 +12,7 @@ jobs:
       # replace with your preferred image
       #- image: cimg/base:stable
     machine: 
-      image: ubuntu-2004:202104-01
+      image: ubuntu-1604:202007-01
     steps:
       #- checkout
       #- aws-cli/install
