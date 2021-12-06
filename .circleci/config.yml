@@ -8,10 +8,10 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.6
 jobs:
   build-job:
-    docker:
+    #docker:
       # replace with your preferred image
-      - image: cimg/base:stable
-    #machine: true
+      #- image: cimg/base:stable
+    machine: true
     steps:
       #- checkout
       #- aws-cli/install
