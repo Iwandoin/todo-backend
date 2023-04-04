@@ -97,26 +97,3 @@
 #         service: ${{ env.ECS_SERVICE }}
 #         cluster: ${{ env.ECS_CLUSTER }}
 #         wait-for-service-stability: true
-name: Test crone
-on:
-   #push:
-    # branches:
-     #  - master
-     schedule:
-      - cron: "*/5 * * * *"
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Build Docker image
-      env:
-        TEST_PATH: -t 3.* ./Lonestar/Texas/Texas_Review.robot
-        ENV: texas
-        USR: false
-        SFX: t_r
-        DOMEN: review
-      run: |
-        docker build --build-arg TEST_PATH="$TEST_PATH" --build-arg ENV="$ENV" --build-arg DOMEN="$DOMEN" --build-arg SFX="$SFX" --build-arg USR="$USR" -f texas.Dockerfile .
